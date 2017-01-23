@@ -110,6 +110,8 @@
 #define KILL_PIN            -1  // 80 with Smart Controller LCD
 #define SUICIDE_PIN         -1  // PIN that has to be turned on right after start, to keep power flowing.
 
+#define FILWIDTH_PIN        3  // ANALOG NUMBERING - can be 3-7
+
 #if ENABLED(ULTRA_LCD)
 
   #define KILL_PIN          32

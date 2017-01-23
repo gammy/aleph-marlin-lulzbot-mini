@@ -18,7 +18,30 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- */
+ * Gammies printer settings:
+ *
+ * Steps per unit:
+ *   M92 X100.50 Y100.50 Z1600.00 E833.00
+ * Maximum feedrates (mm/s):
+ *   M203 X800.00 Y800.00 Z8.00 E40.00
+ * Maximum Acceleration (mm/s2):
+ *   M201 X9000 Y9000 Z100 E1000
+ * Accelerations: P=printing, R=retract and T=travel
+ *   M204 P2000.00 R3000.00 T2000.00
+ * Advanced variables: S=Min feedrate (mm/s), T=Min travel feedrate (mm/s), B=minimum segment time (ms), X=maximum XY jerk (mm/s),  Z=maximum Z jerk (mm/s),  E=maximum E jerk (mm/s)
+ *   M205 S0.00 T0.00 B20000 X12.00 Z0.40 E10.00
+ * Home offset (mm):
+ *   M206 X0.00 Y0.00 Z0.00
+ * PID settings:
+ *   M301 P28.79 I1.91 D108.51 C100.00 L20
+ *   M304 P294.00 I65.00 D382.00
+ * Filament settings: Disabled
+ *   M200 D3.00
+ *   M200 D0
+ * Z-Probe Offset (mm):
+ *   M851 Z-1.43
+ *  4*
+ *  */
 
 /**
  * Configuration.h
@@ -1135,17 +1158,17 @@ const bool Z_MIN_PROBE_ENDSTOP_INVERTING = true; // set to true to invert the lo
  * Note may require analog pins to be defined for different motherboards
  **********************************************************************/
 // Uncomment below to enable
-//#define FILAMENT_WIDTH_SENSOR
+#define FILAMENT_WIDTH_SENSOR
 
 #define DEFAULT_NOMINAL_FILAMENT_DIA 3.00  //Enter the diameter (in mm) of the filament generally used (3.0 mm or 1.75 mm) - this is then used in the slicer software.  Used for sensor reading validation
 
 #if ENABLED(FILAMENT_WIDTH_SENSOR)
   #define FILAMENT_SENSOR_EXTRUDER_NUM 0   //The number of the extruder that has the filament sensor (0,1,2)
-  #define MEASUREMENT_DELAY_CM        14   //measurement delay in cm.  This is the distance from filament sensor to middle of barrel
+  #define MEASUREMENT_DELAY_CM        12   //measurement delay in cm.  This is the distance from filament sensor to middle of barrel
 
   #define MEASURED_UPPER_LIMIT         3.30  //upper limit factor used for sensor reading validation in mm
   #define MEASURED_LOWER_LIMIT         1.90  //lower limit factor for sensor reading validation in mm
-  #define MAX_MEASUREMENT_DELAY       20     //delay buffer size in bytes (1 byte = 1cm)- limits maximum measurement delay allowable (must be larger than MEASUREMENT_DELAY_CM  and lower number saves RAM)
+  #define MAX_MEASUREMENT_DELAY       14     //delay buffer size in bytes (1 byte = 1cm)- limits maximum measurement delay allowable (must be larger than MEASUREMENT_DELAY_CM  and lower number saves RAM)
 
   #define DEFAULT_MEASURED_FILAMENT_DIA  DEFAULT_NOMINAL_FILAMENT_DIA  //set measured to nominal initially
 
